@@ -24,7 +24,7 @@
     - name: Stop the container running on port 3000
       docker_container:
         name: "{{ docker_info | dict2items | json_query('[?key==`containers`].value[] | [?Ports[?PublicPort==`3000`]] | [0].Id') }}"
-        state: ansent
+        state: absent
 
     - name: Pull Docker image
       community.general.docker_image:
