@@ -21,7 +21,7 @@
         containers: yes
       register: docker_info
 
-    - name: Stop the container running on port 8080
+    - name: Stop the container running on port 3000
       docker_container:
         name: "{{ docker_info | dict2items | json_query('[?key==`containers`].value[] | [?Ports[?PublicPort==`3000`]] | [0].Id') }}"
         state: ansent
