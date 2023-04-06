@@ -20,7 +20,7 @@ export default function FormComponent(){
 
         const usersName = JSON.stringify({ name: keywords });
 
-        axios.post(`http://localhost:8080/api/hello`, usersName)
+        axios.post(`http://127.0.0.1:8080/api/hello`, usersName)
             .then(res => {
                 setData(res.data);
                 setKeywords('');
