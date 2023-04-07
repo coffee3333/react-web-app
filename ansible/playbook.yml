@@ -6,7 +6,7 @@
   vars:
     image_name: coffee3333/react-web-app
     image_tag: tagname
-    container_name: http-app_container
+    container_name: web-react-app
 
   tasks:
     - name: Install python3-docker
@@ -21,9 +21,19 @@
         containers: yes
       register: docker_info
 
-    - name: Stop the container running on port 3000
+    - name: Stop old docker container 
       docker_container:
-        name: "{{ docker_info | dict2items | json_query('[?key==`containers`].value[] | [?Ports[?PublicPort==`3000`]] | [0].Id') }}"
+        name: "{{ container_name }}"
+        state: absent
+        
+    - name: Delete all not running container
+      docker_prune:
+        images: yes
+        containers: yes
+
+    - name: Delete old docker image
+      community.general.docker_image:
+        name: "{{ image_name }}:{{ image_tag }}"
         state: absent
 
     - name: Pull Docker image
