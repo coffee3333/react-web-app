@@ -1,0 +1,10 @@
+.skills-info__wrapper{
+    max-width: 1000px;
+}
+
+.skills-info__header{
+    text-align: start;
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
